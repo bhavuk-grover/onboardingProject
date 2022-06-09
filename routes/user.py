@@ -11,7 +11,8 @@ def noteEntityWithDate(item):
         "title":item["title"],
         "sub_title":item["sub_title"],
         "text_note":item["text_note"],
-        "createdAt" :item["createdAt"]
+        "createdAt" :item["createdAt"],
+        "updatedAt": item["updatedAt"]
     }
 
 def notesEntityWithDate(entity):
@@ -50,7 +51,8 @@ async def get_one_note(id):
 @my_app.post('/')
 async def create_note(user: Note):
     temp = dict(user)
-    temp["createdAt"]= str(datetime.utcnow())
+    temp["createdAt"]= datetime.utcnow()
+    temp["updatedAt"]= datetime.utcnow()
     _id= db.local.user.insert(temp)
     return noteEntityWithDate(db.local.user.find_one({"_id":ObjectId(_id)}))
 
@@ -58,7 +60,7 @@ async def create_note(user: Note):
 @my_app.put('/{id}')
 async def update_note(id,user: Note):
     temp = dict(user)
-    temp["createdAt"] = datetime.utcnow()
+    temp["updatedAt"] = datetime.utcnow()
     db.local.user.find_one_and_update({"_id":ObjectId(id)},{
         "$set":temp
     })

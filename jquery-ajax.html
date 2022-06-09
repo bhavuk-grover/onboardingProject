@@ -3,12 +3,19 @@
   <head>
     <title>Ajax Api call by jQuery</title>
     <body>
-      <h3 id="game-filter" class="gamesection"><span>Game</span></h3>
+      <h3 id="game-filter" class="gamesection"><span>Notes</span></h3>
 
-      <div id="game-filter-div" style="padding: 0;">
-          <ul id="gamelist"></ul>
+      <div id="game-filter-div" style="padding: 0; display: inline;">
+          <span<p>title</p></span>
+          <ul id="gamelist" style="display:inline" type = "none" >
+            <span<li>title</li></span>
+          </ul>
       </div>
 
+      <div>
+
+      </div>
+      
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
@@ -18,9 +25,16 @@
           var gamelist = document.getElementById("gamelist");
           notes.forEach(function (note) {
               var li = document.createElement("li");
+              var li1 = document.createElement("li");
+              var li2 = document.createElement("li");
 
-              li.textContent = game.title;
+              li.textContent = note.title;
+              li1.textContent = note.sub_title;
+              li2.textContent = note.text_note;
               gamelist.appendChild(li);
+              gamelist.appendChild(li1);
+              gamelist.appendChild(li2)
+
           });
       }
         $.ajax({
