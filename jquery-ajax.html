@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Ajax Api call by jQuery</title>
+    <body>
+      <h3 id="game-filter" class="gamesection"><span>Game</span></h3>
+
+      <div id="game-filter-div" style="padding: 0;">
+          <ul id="gamelist"></ul>
+      </div>
+
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        var Scallback = function(notes) {
+
+          var gamelist = document.getElementById("gamelist");
+          notes.forEach(function (note) {
+              var li = document.createElement("li");
+
+              li.textContent = game.title;
+              gamelist.appendChild(li);
+          });
+      }
+        $.ajax({
+          url: "http://127.0.0.1:8000/",
+          type: "GET",
+          success: function(result) {
+            Scallback(result);
+          },
+          error: function(error) {
+            console.log(error);
+          }
+
+        });
+      });
+    </script>
+  </head>
+  <body></body>
+</html>
