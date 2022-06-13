@@ -1,0 +1,249 @@
+html{
+  height: 100%;
+}
+
+
+body{
+    background-color: azure;
+}
+
+.wrapper{
+    margin-top:100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .container{
+    padding-left: 10px;
+    cursor: pointer;
+    width: 450px;
+    height: 50px;
+    background: #41484a;
+    text-align: center;
+    line-height: 45px;
+    padding-right: 50px;
+    border-radius: 5px;
+    position: absolute;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    transition: all 1s ease-in-out;
+    
+  } 
+  .input1{
+    border: 0px;
+    border-bottom: 2px solid #fff;
+    background: transparent;
+    width: 100%;
+    padding: 5px 0;
+    margin-left: 10px;
+    outline: none;
+    color: black;
+    font-weight: bold;
+  } 
+  
+  .input{ 
+    border: 0px;
+    
+    background: transparent;
+    width: 0%;
+    padding: 5px 0;
+    margin-left: 10px;
+    outline: none;
+    color: white;
+    font-weight: bold;
+  } 
+
+  .title{
+    font-size: 20px;
+    color: white;
+  }
+
+  .sub_title{
+    font-size: 16px;
+    color: white;
+    border-bottom: 2px solid #fff;
+  }
+
+  .text_note{
+    font-size: 12px;
+    color: white;
+  }
+  .Save{
+    cursor: pointer;
+  }
+  
+  
+  .container .fa{
+    color: #ffffff;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 22px;
+    cursor: pointer;
+  }
+  
+  .container.active{
+    
+    width: 450px;
+    height: 180px;
+  } 
+  
+  .input.active{
+    width: 98%;
+    padding-left: 5px;
+  }
+  .Save.active{
+    width:30%;
+    border: 1px solid azure;
+    transition: all 1s ease-in-out;
+  }
+ 
+  
+  input::placeholder {
+    color: #fff;
+  }
+  #Save:hover{
+    transition: all 0s ease-in-out;
+    border: 1px solid white;
+    background-color: grey;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  }
+  
+  
+  
+/* style for listed notes */
+ .container2{
+  margin: 30px;
+  margin-top: 100px;
+  display: inline-table;
+  justify-content: left;
+  direction: ltr;
+  transition: all 1s ease-in-out;
+  margin-left: 0px;
+  padding-left: 5px;
+}
+
+ .item1{
+   top: 0%;
+  background: 	#f5f5f5;
+  display: inline-table;
+  max-width: 250px;
+  min-width: 100px;
+  padding: 10px;
+  overflow: scroll;
+  margin: 5px;
+  border-radius: 5%;
+  border:1px solid black;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.container2.active{
+  margin-top: 220px;
+  
+}
+.item1:hover{
+  border:1px solid black;
+  background-color: rgb(191, 186, 186);
+
+}
+.title1{
+  font-weight: bold;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: center;
+  color:black;
+  padding: 5px;
+  font-size: 30px;
+}
+
+.sub_title1{
+  color:hsla(36, 5%, 20%, 0.718);
+  padding: 5px;
+  font-size: 18px;
+}
+
+.note_id{
+  height: 0px;
+  width: 0px;
+  overflow: hidden;
+}
+
+/* modal */
+.bg-modal {
+	background-color: rgba(0, 0, 0, 0.8);
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	display: none;
+	justify-content: center;
+	align-items: center;
+  
+}
+.modal-contents {
+	height: 300px;
+	width: 440px;
+	background-color: white;
+	text-align: center;
+	padding: 20px;
+	position: relative;
+	border-radius: 4px;
+  box-shadow: 0 0 10px hsl(0, 0%, 7%);
+  border-radius: 3%;
+
+}
+
+.modal-contents input {
+	margin: 0px;
+	display: block;
+	padding: 8px;
+	border: 0px solid gray;
+}
+
+.close {
+	position: absolute;
+	top: 0;
+	right: 10px;
+	font-size: 42px;
+	color: #333;
+	transform: rotate(45deg);
+	cursor: pointer;
+}
+.close:hover {
+  color: #666;
+}
+
+#t{
+  margin-bottom: 2px;
+  width:380px;
+}
+
+#st{
+  margin-bottom: 2px;
+  width:380px;
+}
+
+#nt{
+  margin: 0px;
+	display: block;
+	width: 400px;
+  height:150px;
+	padding: 8px;
+	border: 0px solid gray;
+}
+
+
+.button {
+	background-color: #41484a;
+	border: 2px solid white;
+	border-radius: 30px;
+	text-decoration: none;
+	padding: 10px 28px;
+	color: white;
+	margin-top: 10px;
+	display: inline-block;
+}
+.button:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid grey;
+}

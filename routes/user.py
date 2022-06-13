@@ -37,6 +37,7 @@ my_app = APIRouter()
 @my_app.get('/')
 async def get_all_notes():
     return notesEntityWithDate(db.local.user.find())
+# sorting in mongo- recently updated at top
 
 # for single element
 # stackoverflow reference for find_one
@@ -53,7 +54,7 @@ async def create_note(user: Note):
     temp = dict(user)
     temp["createdAt"]= datetime.utcnow()
     temp["updatedAt"]= datetime.utcnow()
-    _id= db.local.user.insert(temp)
+    _id= db.local.user.insert_one(temp).inserted_id
     return noteEntityWithDate(db.local.user.find_one({"_id":ObjectId(_id)}))
 
 # for updating note
@@ -68,5 +69,5 @@ async def update_note(id,user: Note):
 
 # for deleting note
 @my_app.delete('/{id}')
-async def delete_note(id,user: Note):
+async def delete_note(id):
     return noteEntityWithDate(db.local.user.find_one_and_delete({"_id":ObjectId(id)}))
