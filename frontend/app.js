@@ -18,6 +18,8 @@ function getitem(note){
                 <div class = "sub_title1">${note.sub_title}</div>
                 <div class = "text_note1">${note.text_note}</div>
                 <div class = "note_id">${note.id}</div>
+
+                <i class="fa-solid fa-pen-to-square editb"></i>
         </li>
         `
         return item;
@@ -70,8 +72,7 @@ function getmodal(){
 //   Post Method
 
 $(document).ready(function() {
-    /* ... */
-    /* send a POST request to create a todo */
+    
     $('#form').submit(function(e) {
         e.preventDefault(); // prevent the page from reload
 
@@ -83,13 +84,15 @@ $(document).ready(function() {
         success: function (result) {
             
             var item = getitem(result)
-            $('.container2').append(item)
+            $('.container2').prepend(item)
+            console.log($('.container2'))
         }
       }).done(function(response) {
           console.log(response) //print the data in the console 
         })
       $(this).trigger('reset') // reset the form
     })
+    
   })
 
 
@@ -104,11 +107,6 @@ $('ul').on('click', 'li', function(event) {
   $('#st').val($(this).children()[1].innerText);
   $('#nt').val($(this).children()[2].innerText);
   $('#_id').val($(this).children()[3].innerText);
-
-  // document.getElementById("t").value = $(this).children()[0].innerText;
-  // document.getElementById("st").value = $(this).children()[1].innerText;    
-  // document.getElementById("nt").value = $(this).children()[2].innerText;
-  // document.getElementById("_id").innerText = $(this).children()[3].innerText;
   
 // on click load modal by changing dispaly to flex
   document.querySelector('.bg-modal').style.display = "flex";
@@ -166,27 +164,4 @@ $("ul").on('click', "li",function(){
   };
   
 });
-
-
-
-
-// var form = document.getElementById('form');
-// form.addEventListener('submit', function(event){
-//     event.preventDefault();
-//     let title = document.getElementById('title').value
-//     let sub_title = document.getElementById('sub_title').value
-//     let note_text = document.getElementById('note_text').value
-//     $.ajax({
-//         type: "POST",
-//         contentType: "application/json; charset=utf-8",
-//         url: "http://127.0.0.1:8000/",
-//         data: JSON.stringify({ title: title, sub_title: sub_title, text_note: note_text }),
-//         success: function (result) {
-//             var item = getitem(result)
-//             $('.container2').append(item)
-//         }
-        
-//     });
-    
-// });
 

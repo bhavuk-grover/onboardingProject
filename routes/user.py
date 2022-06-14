@@ -36,7 +36,7 @@ my_app = APIRouter()
 # pagination
 @my_app.get('/')
 async def get_all_notes():
-    return notesEntityWithDate(db.local.user.find())
+    return notesEntityWithDate(db.local.user.find().sort("updatedAt",-1))
 # sorting in mongo- recently updated at top
 
 # for single element

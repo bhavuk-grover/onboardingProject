@@ -17,7 +17,7 @@ body{
   .container{
     padding-left: 10px;
     cursor: pointer;
-    width: 450px;
+    width: 400px;
     height: 50px;
     background: #41484a;
     text-align: center;
@@ -26,7 +26,7 @@ body{
     border-radius: 5px;
     position: absolute;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    transition: all 1s ease-in-out;
+    transition: all 0.5s ease-in-out;
     
   } 
   .input1{
@@ -43,7 +43,6 @@ body{
   
   .input{ 
     border: 0px;
-    
     background: transparent;
     width: 0%;
     padding: 5px 0;
@@ -84,8 +83,8 @@ body{
   
   .container.active{
     
-    width: 450px;
-    height: 180px;
+    width: 400px;
+    height: 200px;
   } 
   
   .input.active{
@@ -95,13 +94,16 @@ body{
   .Save.active{
     width:30%;
     border: 1px solid azure;
-    transition: all 1s ease-in-out;
   }
  
   
   input::placeholder {
     color: #fff;
   }
+  .container textarea::placeholder {
+    color: #fff;
+  }
+
   #Save:hover{
     transition: all 0s ease-in-out;
     border: 1px solid white;
@@ -117,8 +119,7 @@ body{
   margin-top: 100px;
   display: inline-table;
   justify-content: left;
-  direction: ltr;
-  transition: all 1s ease-in-out;
+  transition: all 0.5s ease-in-out;
   margin-left: 0px;
   padding-left: 5px;
 }
@@ -127,10 +128,10 @@ body{
    top: 0%;
   background: 	#f5f5f5;
   display: inline-table;
-  max-width: 250px;
-  min-width: 100px;
+  width:200px;
+  height: 300px;
   padding: 10px;
-  overflow: scroll;
+  overflow: hidden;
   margin: 5px;
   border-radius: 5%;
   border:1px solid black;
@@ -138,13 +139,13 @@ body{
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 .container2.active{
-  margin-top: 220px;
+  margin-top: 240px;
   
 }
 .item1:hover{
   border:1px solid black;
   background-color: rgb(191, 186, 186);
-
+  
 }
 .title1{
   font-weight: bold;
@@ -159,6 +160,13 @@ body{
   color:hsla(36, 5%, 20%, 0.718);
   padding: 5px;
   font-size: 18px;
+}
+
+.text_note1{
+  height: 200px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .note_id{
@@ -247,3 +255,20 @@ body{
   color: black;
   border: 2px solid grey;
 }
+
+.editb{
+  position:absolute;
+  font-size: 40px;
+  margin-top: -150px;
+  margin-left: 80px;
+  z-index: 2px;
+}
+
+.item1 .editb{
+  visibility: hidden;
+}
+
+.item1:hover i {
+  visibility: visible;
+}
+
