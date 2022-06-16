@@ -7,268 +7,336 @@ body{
     background-color: azure;
 }
 
-.wrapper{
-    margin-top:100px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-  }
-  
-  .container{
-    padding-left: 10px;
+.wrapper1{
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}
+.container1{
+  padding-left: 10px;
     cursor: pointer;
-    width: 400px;
+    width: 300px;
     height: 50px;
-    background: #41484a;
+    background: whitesmoke;
     text-align: center;
     line-height: 45px;
     padding-right: 50px;
     border-radius: 5px;
     position: absolute;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    transition: all 0.5s ease-in-out;
-    
-  } 
-  .input1{
-    border: 0px;
-    border-bottom: 2px solid #fff;
-    background: transparent;
-    width: 100%;
-    padding: 5px 0;
-    margin-left: 10px;
-    outline: none;
-    color: black;
-    font-weight: bold;
-  } 
-  
-  .input{ 
-    border: 0px;
-    background: transparent;
-    width: 0%;
-    padding: 5px 0;
-    margin-left: 10px;
-    outline: none;
-    color: white;
-    font-weight: bold;
-  } 
-
-  .title{
-    font-size: 20px;
-    color: white;
-  }
-
-  .sub_title{
-    font-size: 16px;
-    color: white;
-    border-bottom: 2px solid #fff;
-  }
-
-  .text_note{
-    font-size: 12px;
-    color: white;
-  }
-  .Save{
-    cursor: pointer;
-  }
-  
-  
-  .container .fa{
-    color: #ffffff;
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    font-size: 22px;
-    cursor: pointer;
-  }
-  
-  .container.active{
-    
-    width: 400px;
-    height: 200px;
-  } 
-  
-  .input.active{
-    width: 98%;
-    padding-left: 5px;
-  }
-  .Save.active{
-    width:30%;
-    border: 1px solid azure;
-  }
- 
-  
-  input::placeholder {
-    color: #fff;
-  }
-  .container textarea::placeholder {
-    color: #fff;
-  }
-
-  #Save:hover{
-    transition: all 0s ease-in-out;
-    border: 1px solid white;
-    background-color: grey;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-  }
-  
-  
-  
-/* style for listed notes */
- .container2{
-  margin: 30px;
-  margin-top: 100px;
-  display: inline-table;
-  justify-content: left;
-  transition: all 0.5s ease-in-out;
-  margin-left: 0px;
-  padding-left: 5px;
+    transition: all 0.3s ease-in-out;
+}
+.container1 input::placeholder{
+  color: #41484A;
 }
 
- .item1{
-   top: 0%;
-  background: 	#f5f5f5;
+.search{
+  border: 0px;
+  border-bottom: 0px solid #fff;
+  background: transparent;   
+  width: 98%;
+  padding-bottom: 0px;
+  padding-left: 5px;
+  margin-left: 10px;
+  outline: none;
+  color: black;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.container1 i{
+  position: absolute;
+  color: #666;
+  right: 15px;
+  top: 15px;
+  font-size: 22px;
+  cursor: pointer;
+}
+.wrapper{
+  margin-top:100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.container{
+  padding-left: 10px;
+  cursor: pointer;
+  width: 400px;
+  height: 60px;
+  background: #41484A;
+  text-align: center;
+  line-height: 45px;
+  padding-right: 50px;
+  border-radius: 5px;
+  position: absolute;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  transition: all 0.3s ease-in-out;
+}
+.input1{
+  border: 0px;
+  border-bottom: 2px solid #fff;
+  background: transparent;
+  width: 100%;
+  padding: 5px 0;
+  margin-left: 10px;
+  outline: none;
+  color: black;
+  font-weight: bold;
+}
+.input{
+  border: 0px;
+  background: transparent;
+  width: 0%;
+  padding: 5px 0;
+  margin-left: 10px;
+  outline: none;
+  color: white;
+  font-weight: bold;
+}
+.title{
+  font-size: 20px;
+  color: white;
+}
+.tag
+{
+  color: rgb(12, 122, 166);
+  font-weight: bold;
+  font-style: italic;
+  width: 460px;
+}
+.sub_title{
+  font-size: 16px;
+  color: white;
+  border-bottom: 2px solid #fff;
+}
+.text_note{
+  font-size: 12px;
+  color: white;
+}
+.Save{
+  cursor: pointer;
+}
+.container .fa{
+  color: #FFFFFF;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  font-size: 22px;
+  cursor: pointer;
+}
+.container.active{
+  width: 400px;
+  height: 250px;
+}
+.input.active{
+  width: 98%;
+  padding-left: 5px;
+}
+.Save.active{
+  width:30%;
+  border: 1px solid azure;
+}
+input::placeholder {
+  color: #fff;
+}
+.container textarea::placeholder {
+  color: #fff;
+}
+#Save:hover{
+  transition: all 0s ease-in-out;
+  border: 1px solid white;
+  background-color: grey;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+/* style for listed notes */
+.container2{
+margin: 30px;
+margin-top: 100px;
+display: inline-table;
+justify-content: left;
+transition: all 0.3s ease-in-out;
+margin-left: 0px;
+padding-left: 5px;
+padding-top: 20px;
+}
+.item1{
+  top: 0%;
+  position: relative;
+  background: white;
   display: inline-table;
-  width:200px;
+  width: 240px;
   height: 300px;
   padding: 10px;
   overflow: hidden;
-  margin: 5px;
-  border-radius: 5%;
-  border:1px solid black;
+  margin: 16px;
+  border-radius: 8px;
+  border: 1px solid #e4d8d8;
+  cursor: pointer;
+}
+.container2.active{
+margin-top: 240px;
+}
+.item1:hover{
+  box-shadow: 1px 1px 8px 0px rgb(0 0 0 / 40%);
+}
+.title1{
+font-weight: bold;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+text-align: left;
+color:black;
+padding: 5px;
+font-size: 30px;
+}
+.sub_title1{
+color:hsla(36, 5%, 20%, 0.718);
+padding: 5px;
+font-size: 18px;
+}
+.text_note1{
+height: 200px;
+margin-bottom: 10px;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+.note_tag
+{
+font-weight: bold;
+font-style: italic;
+color: white;
+}
+.note_tag_item
+{
+font-weight: bold;
+font-style: italic;
+color: rgb(12, 122, 166);
+word-break: break-all;
+overflow: hidden;
+}
+.note_id{
+height: 0px;
+width: 0px;
+overflow: hidden;
+}
+/* modal */
+.bg-modal {
+background-color: rgba(0, 0, 0, 0.8);
+width: 100%;
+height: 100%;
+position: fixed;
+top: 0;
+display: none;
+justify-content: center;
+align-items: center;
+}
+.modal-contents {
+height: 400px;
+width: 500px;
+background-color: white;
+text-align: center;
+padding: 20px;
+position: relative;
+border-radius: 4px;
+box-shadow: 0 0 10px hsl(0, 0%, 7%);
+border-radius: 3%;
+}
+.modal-contents input {
+margin: 0px;
+display: block;
+padding: 8px;
+border: 0px solid gray;
+}
+.close {
+position: absolute;
+top: 0;
+right: 10px;
+font-size: 42px;
+color: #333;
+transform: rotate(45deg);
+cursor: pointer;
+}
+.close:hover {
+color: #666;
+}
+#t{
+margin-bottom: 2px;
+width: 460px;
+}
+#st{
+margin-bottom: 2px;
+width:460px;
+}
+#nt{
+margin: 0px;
+display: block;
+width: 460px;
+height:200px;
+padding: 8px;
+border: 0px solid gray;
+}
+.button {
+background-color: #41484A;
+border: 2px solid white;
+border-radius: 30px;
+text-decoration: none;
+padding: 10px 28px;
+color: white;
+margin-top: 10px;
+display: inline-block;
+}
+.button:hover {
+background-color: white;
+color: black;
+border: 2px solid grey;
+}
+.editb{
+position:absolute;
+color: grey;
+font-size: 25px;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+z-index: 2px;
+
+ }
+.item1 .editb{
+visibility: hidden;
+}
+.item1:hover i {
+visibility: visible;
+}
+
+
+
+
+/* previous and next */
+.wrapper2{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.icon{
+  color: #41484a;
+  padding: 10px;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.page_num{
+  height: 30px;
+  width: 20px;
+  color: #41484a;
+  padding: 10px;
+  font-size: 30px;
   cursor: pointer;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
-.container2.active{
-  margin-top: 240px;
-  
-}
-.item1:hover{
-  border:1px solid black;
-  background-color: rgb(191, 186, 186);
-  
-}
-.title1{
-  font-weight: bold;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  text-align: center;
-  color:black;
-  padding: 5px;
-  font-size: 30px;
-}
 
-.sub_title1{
-  color:hsla(36, 5%, 20%, 0.718);
-  padding: 5px;
-  font-size: 18px;
-}
-
-.text_note1{
-  height: 200px;
-  margin-bottom: 10px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.note_id{
-  height: 0px;
-  width: 0px;
-  overflow: hidden;
-}
-
-/* modal */
-.bg-modal {
-	background-color: rgba(0, 0, 0, 0.8);
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	top: 0;
-	display: none;
-	justify-content: center;
-	align-items: center;
-  
-}
-.modal-contents {
-	height: 300px;
-	width: 440px;
-	background-color: white;
-	text-align: center;
-	padding: 20px;
-	position: relative;
-	border-radius: 4px;
-  box-shadow: 0 0 10px hsl(0, 0%, 7%);
-  border-radius: 3%;
-
-}
-
-.modal-contents input {
-	margin: 0px;
-	display: block;
-	padding: 8px;
-	border: 0px solid gray;
-}
-
-.close {
-	position: absolute;
-	top: 0;
-	right: 10px;
-	font-size: 42px;
-	color: #333;
-	transform: rotate(45deg);
-	cursor: pointer;
-}
-.close:hover {
+.icon1{
   color: #666;
-}
-
-#t{
-  margin-bottom: 2px;
-  width:380px;
-}
-
-#st{
-  margin-bottom: 2px;
-  width:380px;
-}
-
-#nt{
-  margin: 0px;
-	display: block;
-	width: 400px;
-  height:150px;
-	padding: 8px;
-	border: 0px solid gray;
-}
-
-
-.button {
-	background-color: #41484a;
-	border: 2px solid white;
-	border-radius: 30px;
-	text-decoration: none;
-	padding: 10px 28px;
-	color: white;
-	margin-top: 10px;
-	display: inline-block;
-}
-.button:hover {
-  background-color: white;
-  color: black;
-  border: 2px solid grey;
-}
-
-.editb{
-  position:absolute;
-  font-size: 40px;
-  margin-top: -150px;
-  margin-left: 80px;
-  z-index: 2px;
-}
-
-.item1 .editb{
-  visibility: hidden;
-}
-
-.item1:hover i {
-  visibility: visible;
+  padding: 10px;
+  font-size: 30px;
+  cursor: pointer;
+  position: absolute;
 }
 
