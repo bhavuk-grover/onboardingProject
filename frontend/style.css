@@ -318,7 +318,7 @@ visibility: visible;
 .icon{
   color: #41484a;
   padding: 10px;
-  font-size: 30px;
+  font-size: 20px;
   cursor: pointer;
 }
 
@@ -340,3 +340,20 @@ visibility: visible;
   position: absolute;
 }
 
+.d{
+  display: inline;
+}
+
+ .wrapper2 .rem{
+  visibility: hidden;
+}
+
+.container1:hover{
+  background-color: rgb(233, 226, 226);
+}
+
+.note_taglist{
+  height: 0px;
+  width: 0px;
+  overflow: hidden;
+  }

@@ -1,4 +1,6 @@
-// Add class to create toggle effect
+const page_size = 6;
+var tag_map=new Map();
+// Add class to create toggle effecty
 $(document).ready(function(){
   $(".input1, .fa-sticky-note").click(function(){
     $(".container, .input, .Save, .container2").addClass("active");
@@ -14,12 +16,12 @@ $(document).ready(function(){
     });
 
 var url = ""
-function geturl(t, page_size){
+function geturl(t, page_size, page_num=1){
   if(t == ""){
-    url = "http://127.0.0.1:8000/?page_size="+page_size
+    url = "http://127.0.0.1:8000/?page_size="+page_size+"&page_num="+page_num
   }
   else{
-    url = "http://127.0.0.1:8000/?tag=" + t + "&page_size="+page_size
+    url = "http://127.0.0.1:8000/?tag=" + t + "&page_size="+page_size+"&page_num="+page_num
   }
   return url
 }
@@ -33,6 +35,7 @@ function getitem(note){
               <div class = "text_note1">${note.text_note}</div>
               <div class = "note_tag_item">${note.tag}</div>
               <div class = "note_id">${note.id}</div>
+              <div class = "note_taglist">${note.taglist}</div>
               <i class="fa-solid fa-pen-to-square editb"></i>
       </li>
       `
@@ -62,15 +65,35 @@ var modal = `
 
 // item append function 
 var Scallback = function(notes) {
-  notes.forEach(function (note) {
+  notes[0].forEach(function (note) {
       var item = getitem(note);
+      var tags=note.taglist.toString().split(",");
+      tags.forEach(function(tag)
+      {
+      if(!tag_map.has(tag))
+            {
+              tag_map.set(tag,1);
+            }
+            else tag_map.set(tag,tag_map.get(tag)+1);
+      });
       $('.container2').append(item);
   });
+  $(".pagenum").text(notes[1])
+  if(notes[1]>page_size){
+    $(".pagenum").text(notes[1])
+    $(".wrapper2 , .icon").removeClass("rem")
+
+  }
+  else{
+    $(".pagenum").text("")
+    $(".wrapper2 , .icon").addClass("rem")
+  }
+
 }
 
 var getapi = function(page_size){
   $.ajax({
-    url: "http://127.0.0.1:8000/?page_size="+page_size,
+    url: geturl("", page_size,1),
     type: "GET",
     success: function(result) {
       $(".container2").empty()
@@ -82,10 +105,12 @@ var getapi = function(page_size){
   });
 }
 
+
+
 // get api call
 $(document).ready(function() {
   var t = ""
-  const page_size = 6;
+  
   $(".icon1").click(function(){
     getapi(page_size)
     $(".search").val("")
@@ -95,7 +120,16 @@ $(document).ready(function() {
   
   
   $('.search').keydown(function(e){
-
+    $(".search").autocomplete(
+      {
+      source: Array.from(tag_map.keys()),
+      },
+      {
+          autoFocus:true,
+          delay:0,
+          min:1
+      }
+    );
     if(e.keyCode == 13){
       t = $(".search").val()
       
@@ -115,11 +149,19 @@ $(document).ready(function() {
   
   $("#next").click(function(){
     var page_num = $(this).parent().children()[1].innerText
+    end = page_num*page_size
+    max = $(".pagenum").text()
+    if(max<end){
+      alert("this is the last page")
+      return false
+
+    } 
     page_num = parseInt(page_num)+1
-    console.log(page_num)
     $(this).parent().children()[1].innerText = page_num
+    $(".starting").text((page_num-1)*page_size + 1)
+    
     $.ajax({
-      url: geturl(t,page_size)+"&page_num="+page_num,
+      url: geturl(t,page_size,page_num),
       type: "GET",
       success: function(result) {
         $(".container2").empty()
@@ -130,15 +172,27 @@ $(document).ready(function() {
       }
 
     });
+    end = page_num*page_size
+    max = $(".pagenum").text()
+    $(".end").text((end<max ? end : max))
+    
+
   })
   $("#previous").click(function(){
     var page_num = $(this).parent().children()[1].innerText
+    if(page_num==1){
+      alert("this is the first page")
+      return false
+
+    } 
     page_num = parseInt(page_num)-1
-    console.log(page_num)
+
+    $(".starting").text(((page_num-1)*page_size)+1)
+    $(".end").text(page_num*page_size)
     $(this).parent().children()[1].innerText = page_num
     $.ajax({
-      
-      url: geturl(t,page_size) +"&page_num="+ page_num,
+    
+      url: geturl(t,page_size,page_num),
       type: "GET",
       success: function(result) {
         $(".container2").empty()
@@ -154,17 +208,22 @@ $(document).ready(function() {
 $(document).ready(function() {
   $('#form').submit(function(e) {
       e.preventDefault(); // prevent the page from reload
-      // console.log($('#note_tags').val());
+      var tags= $('#note_tags').val().split(",");
+      tags.forEach(function(tag)
+      {
+      if(tag_map.has(tag))
+      {
+        tag_map.set(tag,tag_map.get(tag)+1);
+      }
+      else tag_map.set(tag,1);
+      });
     $.ajax({
       type: "POST",
       contentType: "application/json; charset=utf-8",
       url: "http://127.0.0.1:8000/",
       data: JSON.stringify({ title: $('#title').val(), sub_title: $('#sub_title').val(), text_note: $('#note_text').val(), tag:$('#note_tags').val()}),
       success: function (result) {
-          // var item = getitem(result)
-          // $('.container2').prepend(item)
-          // console.log($('.container2'))
-          // console.log($('#note_tags').val());
+          
       }
     }).done(function(response) {
         console.log(response) //print the data in the console
@@ -189,8 +248,18 @@ $('#_id').val($(this).children()[4].innerText);
 // on click load modal by changing dispaly to flex
 document.querySelector('.bg-modal').style.display = "flex";
 }).on('click', '#edit', function(event) {
-// edit button
+
+  // edit button
 event.stopPropagation();
+var tags= $(this).parent()[0][3].value.split(",");
+      tags.forEach(function(tag)
+      {
+if(tag_map.has(tag))
+        {
+          tag_map.set(tag ,tag_map.get(tag.value)+1);
+        }
+        else tag_map.set(tag,1);
+      });
 $.ajax({
   url: "http://127.0.0.1:8000/" + $(this).parent().parent().children().eq(2).val(),
   contentType: "application/json; charset=utf-8",
@@ -209,17 +278,29 @@ $.ajax({
 })
 location.reload()
 });
+
 // cross button
 $('ul').on('click', 'li', function() {
 }).on('click', '.close', function(event) {
-// remove modal
+
+  // remove modal
 document.querySelector('.bg-modal').style.display = "none";
 });
+
 // delete method
 $("ul").on('click', "li",function(){
 }).on('click', "#delete" , function(){
 if(window.confirm("This will delete the note permanently. Click Ok to confirm"))
 {
+  var tags= $(this).parent()[0][3].value.split(",");
+      tags.forEach(function(tag)
+      {
+  if(tag_map.get(tag)>1)
+  {
+    tag_map.set(tag ,tag_map.get(tag)-1);
+  }
+  else tag_map.delete(tag);
+  });
   $.ajax({
     url: "http://127.0.0.1:8000/" + $(this).parent().parent().children().eq(2).val(),
     contentType: "application/json; charset=utf-8",
@@ -237,46 +318,7 @@ if(window.confirm("This will delete the note permanently. Click Ok to confirm"))
 };
 });
 
-
-
-// next button
-// $(document).ready(function(){
-  
-// });
-
-      // $("#next").click(function(){
-      //   var page_num = $(this).parent().children()[2].innerText
-      //   page_num = parseInt(page_num)+1
-      //   console.log(page_num)
-      //   $(this).parent().children()[2].innerText = page_num
-      //   $.ajax({
-      //     url: "http://127.0.0.1:8000/?tag=" + t + "&page_size=2&page_num="+page_num,
-      //     type: "GET",
-      //     success: function(result) {
-      //       $(".container2").empty()
-      //       Scallback(result)
-      //     },
-      //     error: function(error) {
-      //       console.log(error);
-      //     }
-    
-      //   });
-      // })
-      // $("#previous").click(function(){
-      //   var page_num = $(this).parent().children()[2].innerText
-      //   page_num = parseInt(page_num)-1
-      //   console.log(page_num)
-      //   $(this).parent().children()[2].innerText = page_num
-      //   $.ajax({
-      //     url: "http://127.0.0.1:8000/?tag=" + t + "&page_size=2&page_num=" + page_num,
-      //     type: "GET",
-      //     success: function(result) {
-      //       $(".container2").empty()
-      //       Scallback(result)
-      //     },
-      //     error: function(error) {
-      //       console.log(error);
-      //     }
-    
-      //   });
-      // })
+      $(document).ready(function(){
+        $(".starting").text(1)
+        $(".end").text(page_size)
+      })

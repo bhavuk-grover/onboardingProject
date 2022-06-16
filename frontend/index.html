@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" type = "text/css" href="style.css">
 </head>
 <body>
@@ -44,9 +46,15 @@
 
     <div class = "wrapper2">
         <i class="fa-solid fa-angle-left icon" id = "previous"></i>
-        <div class = "icon">1</div>
+        <div class = "icon" id = "p">1</div>
         <i class="fa-solid fa-angle-right icon" id = "next"></i>
-        
+        <div class = "icon d">
+            <div class = "starting d"></div>
+            <p class="d">-</p>
+            <div class="end d"></div>
+            <p class="d">of</p>
+            <div class ="pagenum d" ></div>
+        </div>
     </div>
     
     <script src="app.js"></script>

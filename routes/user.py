@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from models.user import Note 
 from config.db import db 
 from bson import ObjectId
@@ -17,8 +17,12 @@ def noteEntityWithDate(item):
         "taglist": [item["taglist"]],
     }
 
-def notesEntityWithDate(entity):
-    return [noteEntityWithDate(item) for item in entity]
+def notesEntityWithDate(entity, tag):
+    res = [noteEntityWithDate(item) for item in entity]
+    if tag == "":
+        return [res, db.local.user.count_documents({})]
+    else :
+        return [res, db.local.user.count_documents({"taglist":tag})]
 
 
 # to seperate API code from index code
@@ -45,9 +49,9 @@ async def get_one_note(id):
 async def find_tag(tag:str = "", page_size: int = 7, page_num : int = 1):
     skips = page_size * (page_num - 1)
     if tag == "":
-        return notesEntityWithDate(db.local.user.find().sort("updatedAt",-1).skip(skips).limit(page_size))
+        return notesEntityWithDate(db.local.user.find().sort("updatedAt",-1).skip(skips).limit(page_size), tag)
     else:
-        return notesEntityWithDate(db.local.user.find({"taglist":tag}).sort("updatedAt",-1).skip(skips).limit(page_size))
+        return notesEntityWithDate(db.local.user.find({"taglist":tag}).sort("updatedAt",-1).skip(skips).limit(page_size), tag)
 
 @my_app.post('/')
 async def create_note(user: Note):    
