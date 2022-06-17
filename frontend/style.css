@@ -196,8 +196,12 @@ font-size: 18px;
 .text_note1{
 height: 200px;
 margin-bottom: 10px;
+width: 240px;
+-webkit-box-orient: vertical;
+display: -webkit-box;
+-webkit-line-clamp: 11;
 overflow: hidden;
-text-overflow: ellipsis;
+text-overflow: ellipsis ellipsis;
 }
 .note_tag
 {
