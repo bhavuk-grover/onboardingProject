@@ -186,6 +186,7 @@ text-align: left;
 color:black;
 padding: 5px;
 font-size: 30px;
+text-transform: capitalize;
 }
 .sub_title1{
 color:hsla(36, 5%, 20%, 0.718);
