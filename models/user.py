@@ -7,5 +7,3 @@ class Note(BaseModel):
     sub_title: Union[str, None] = Field(default=None, max_length=400)
     tag: Union[str, None] = Field(default = "")
     text_note: str 
-    
-    

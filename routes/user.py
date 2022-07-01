@@ -1,5 +1,5 @@
-from fastapi import APIRouter
-from models.user import Note 
+from fastapi import APIRouter, WebSocket, Request
+from models.user import Note
 from config.db import db 
 from bson import ObjectId
 from datetime import datetime
@@ -72,3 +72,16 @@ async def update_note(id,user: Note):
 @my_app.delete('/{id}')
 async def delete_note(id):
     return noteEntityWithDate(db.local.user.find_one_and_delete({"_id":ObjectId(id)}))
+
+
+websocket_list=[]
+@my_app.websocket("/ws")
+async def websocket_endpoint(websocket: WebSocket):
+	await websocket.accept()
+	if websocket not in websocket_list:
+		websocket_list.append(websocket)
+	while True:
+		data = await websocket.receive_text()
+		for web in websocket_list:
+			if web!=websocket:
+				await web.send_text(f"{data}")

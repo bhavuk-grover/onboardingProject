@@ -1,6 +1,24 @@
 const page_size = 6;
 var tag_map=new Map();
 // Add class to create toggle effecty
+var ws = new WebSocket("ws://localhost:8000/ws");
+ws.onmessage = function(event) {
+  var messages = document.getElementById('texta')
+  //var message = document.createElement('li')
+  //var content = document.createTextNode(event.data)
+  //message.appendChild(content)
+  //messages.appendChild(message)
+  messages.value+="Received:"+event.data+"\n";
+}
+
+function sendt(){
+   var v=document.getElementById("texta");
+   var msg=document.getElementById("msg").value;
+   ws.send(msg);
+   var msg="Sent:"+msg+"\n";
+   v.value+=msg;
+  
+}
 $(document).ready(function(){
   $(".input1, .fa-sticky-note").click(function(){
     $(".container, .input, .Save, .container2").addClass("active");
@@ -319,6 +337,10 @@ if(window.confirm("This will delete the note permanently. Click Ok to confirm"))
 });
 
       $(document).ready(function(){
+
         $(".starting").text(1)
         $(".end").text(page_size)
       })
+
+      
+
